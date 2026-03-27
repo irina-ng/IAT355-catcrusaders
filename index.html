@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <script src="js/visualizations.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Daylight Savings</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Daylight Saving Time</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel massa id dolor tincidunt finibus eu eget dolor.</p>
+    </header>
+
+    <div class="vis-section">
+        <h2>What do people actually want?</h2>
+        <p>Based on Reddit comments opinions gathered from r/bc and r/vancouver on daylight saving time.</p>
+        <div id="reddit-chart"></div>
+    </div>
+
 </body>
 </html>

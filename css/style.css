@@ -1,0 +1,65 @@
+:root { /*change colors here, i set random ones for now*/
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --accent: #54bbee; 
+  --text: #1a1a2e;
+  --muted: #6b7280;
+}
+
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background: linear-gradient(160deg, #0d1b2a, #1a3a5c, #2c5f8a);
+  color: white;
+  text-align: center;
+  padding: 3em 2em;
+}
+
+header h1 {
+  font-size: 2.4em;
+  margin: 0 0 0.3em 0;
+  font-weight: normal;
+}
+
+header p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1em;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.vis-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  margin: 2.5em auto;
+  padding: 2em;
+  background-color: var(--card);
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  border-top: 3px solid var(--accent);
+}
+
+.vis-section h2 {
+  align-self: flex-start;
+  color: var(--text);
+  font-size: 1.3em;
+  font-weight: normal;
+  margin-bottom: 0.4em;
+}
+
+.vis-section p {
+  align-self: flex-start;
+  color: var(--muted);
+  margin-top: 0;
+  margin-bottom: 1.5em;
+  font-family: Arial, sans-serif;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
