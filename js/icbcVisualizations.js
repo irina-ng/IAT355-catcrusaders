@@ -1,7 +1,7 @@
 console.log("vis.js is connected");
 
 async function fetchData() {
-  const data = await d3.csv("./data/ICBC_CrashesMonths.csv", d3.autoType);
+  const data = await d3.csv("./data/ICBC_Crashes.csv", d3.autoType);
   return data;
 }
 
