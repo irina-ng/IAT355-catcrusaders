@@ -36,8 +36,6 @@ fetchData().then(async (data) => {
     .title({
       text: "Crashes between 2020–2025 by months"
     })
-    .height(400)
-    .width(700)
     .toSpec();
 
   render(".icbc-vis", icbc);
