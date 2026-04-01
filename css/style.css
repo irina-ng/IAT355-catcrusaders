@@ -147,12 +147,7 @@ html, body {
   margin: 0;
 }
 
-#slide-0 h1{
-  font-size: 3em;
-  padding-top: 0em;
-  font-weight: normal;
-  color: var(--heading-text);
-}
+
 .sunrise-controls {
   display: flex;
   gap: 16px;
@@ -180,3 +175,143 @@ html, body {
   flex: 1;
   min-width: 0;
 }
+
+/* slide-0: sky blue background */
+#slide-0 {
+  background: #7dd4f0;
+  overflow: hidden;
+}
+
+.hero-section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* large yellow dome circle */
+.hero-sun-dome {
+  position: absolute;
+  width: 75vw;
+  height: 75vw;
+  background: #FCFBB6;
+  border-radius: 50%;
+  bottom: -40vw;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 8vw;
+  gap: 1.5em;
+   padding-top: 10vw; 
+}
+
+.hero-title {
+  font-size: 5vw;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  color: #1B3C62;
+  text-align: center;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+.scroll-hint {
+  padding-top: 5vw; 
+  font-size: 1em;
+  color: #1B3C62;
+  text-align: center;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+/* animation for scroll hint */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+
+.scroll-hint {
+  font-size: 1em;
+  color: #1a2e5c;
+  text-align: center;
+  opacity: 0.7;
+  line-height: 1.6;
+  animation: bounce 1.4s ease-in-out infinite;
+}
+.what-section {
+  width: 100%;
+  height: 100%;
+  background: #7dd4f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6em;
+  padding: 0 4em;
+}
+
+.what-text {
+  max-width: 380px;
+}
+
+.what-text h2 {
+  font-size: 2em;
+  font-weight: 700;
+  color: #1a3a5c;
+  margin-bottom: 0.5em;
+}
+
+.what-text p {
+  font-size: 1em;
+  color: #1a3a5c;
+  line-height: 1.6;
+}
+
+.clock-circles {
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.circle.dark {
+  background: #1a3a5c;
+  color: white;
+  z-index: 2;
+}
+
+.circle.light {
+  background: #FCFBB6;
+  color: #1a3a5c;
+  margin-left: -40px;
+}
+
+.circle .period {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.circle .hour {
+  font-size: 2.5em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.circle .direction {
+  font-size: 0.85em;
+}
+
+
