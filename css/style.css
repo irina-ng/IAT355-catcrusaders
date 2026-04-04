@@ -8,7 +8,7 @@
   --sidebar-bg:   #0c345c;
   --sidebar-text: rgba(255, 255, 255, 0.55);
   --body-bg:      #3f71a7;
-  --slide-bg:     #ffffff;
+  --slide-bg:     #C6EAF5;
   --slide-text:   #1a1a2e;
 }
 
@@ -117,7 +117,7 @@ html, body {
 
 /* main-section */
 .main-section {
-  background: rgb(255, 255, 255);
+  background: #C6EAF5;
   color: white;
   height: 100%;
   text-align: center;
@@ -178,7 +178,7 @@ html, body {
 
 /* slide-0: sky blue background */
 #slide-0 {
-  background: #7dd4f0;
+  background: linear-gradient(to bottom, #7DD4F0 38%, #C6EAF5 100%);
   overflow: hidden;
 }
 
@@ -246,7 +246,7 @@ html, body {
 .what-section {
   width: 100%;
   height: 100%;
-  background: #7dd4f0;
+  background: #C6EAF5;
   display: flex;
   align-items: center;
   justify-content: center;
