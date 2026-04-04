@@ -8,7 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vega-lite-api@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite-api@5"></script>
   
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,95 +17,82 @@
 </head>
 
 <body>
-  <nav class="sidebar">
-    <p class="sidebar-title">Daylight Saving Time</p>
-    <ul>
-      <li><button class="nav-btn active" data-i="0">Introduction</button></li>
-      <li><button class="nav-btn" data-i="1">What is DST?</button></li>
-      <li><button class="nav-btn" data-i="2">Public Opinion</button></li>
-      <li><button class="nav-btn" data-i="3">Stop Switching</button></li>
-      <li><button class="nav-btn" data-i="4">Standard Time</button></li>
-      <li><button class="nav-btn" data-i="5">Daylight Saving Time</button></li>
-      <li><button class="nav-btn" data-i="6">Conclusion</button></li>
-    </ul>
-  </nav>
-
   <main class="scroll-container">
+    <!-- Landing -->
     <section class="slide" id="slide-0">
-  <div class="hero-section">
-    <div class="hero-sun-dome">
-      <h1 class="hero-title">DAYLIGHT<br>SAVING TIME</h1>
-      <p class="scroll-hint">scroll for more<br>↓</p>
-    </div>
-  </div>
-</section>
-    <section class="slide" id="slide-1">
-  <div class="what-section">
-    <div class="what-text">
-      <h2>What is Daylight Saving?</h2>
-      <p>The practice of turning clocks ahead one hour on the second Sunday in March and back one hour on the first Sunday in November.</p>
-    </div>
-    <div class="clock-circles">
-      <div class="circle dark">
-        <span class="period">mar - nov</span>
-        <span class="hour">1hr</span>
-        <span class="direction">forward</span>
+      <div class="hero-section">
+        <div class="hero-sun-dome">
+          <h1 class="hero-title">DAYLIGHT<br>SAVING TIME</h1>
+          <p class="scroll-hint">scroll for more<br>↓</p>
+        </div>
       </div>
-      <div class="circle light">
-        <span class="period">dec - feb</span>
-        <span class="hour">1hr</span>
-        <span class="direction">back</span>
-      </div>
-    </div>
-  </div>
-</section>
-    <section class="slide" id="slide-2">
-        <!-- opinions -->
-        <div class = "main-section">
-            <h1>What do people think?</h1>
-            <h2>Reasons and arguements for each preference type. Keep switching, stop switching (no specific preference),<br> permanent standard time or permanent daylight saving time.</h2>
+    </section>
 
-            <div class="vis-section">
-              <div id="dst-bar"></div>
-            </div>
-            
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel massa id dolor tincidunt finibus eu eget dolor.</p>
+    <!-- What section -->
+    <section class="slide" id="slide-1">
+      <div class="what-section">
+        <div class="what-text">
+          <h2>What is Daylight Saving?</h2>
+          <p>The practice of turning clocks ahead one hour on the second Sunday in March and back one hour on the first Sunday in November.</p>
+        </div>
+        <div class="clock-circles">
+          <div class="circle dark">
+            <span class="period">mar - nov</span>
+            <span class="hour">1hr</span>
+            <span class="direction">forward</span>
+          </div>
+          <div class="circle light">
+            <span class="period">dec - feb</span>
+            <span class="hour">1hr</span>
+            <span class="direction">back</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Voice of province section -->
+    <section class="slide" id="slide-2">
+        <div class = "main-section">
+          <h1>What do people think?</h1>
+          <h2>Reasons and arguements for each preference type. Keep switching, stop switching (no specific preference),<br> permanent standard time or permanent daylight saving time.</h2>
+          <div class="vis-section">
+            <div id="dst-bar"></div>
+          </div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel massa id dolor tincidunt finibus eu eget dolor.</p>
        </div>
     </section>
-    <section class="slide" id="slide-3">
-      <!-- stop switch -->
-    </section>
-   <section class="slide" id="slide-4">
-  <!-- st -->
-  <div class="main-section">
-    <h1>Case for Standard Time</h1>
-    <p>Under Permanent Standard Time, sunrise times align more closely with our natural circadian rhythm.<br>
-　　　　Morning light is the most powerful cue for our internal clock.</p>
-    <div class="vis-section">
-      <div id="standard-time-chart"></div>
-    </div>
-  </div>
-</section>
-    <section class="slide" id="slide-5">
-      <!-- dst placeholder-->
-        <div class="main-section">
-    <h1>Case for Daylight Time</h1>
-    <p>DST extends evening daylight by one hour year-round.<br>
-　　　For most of people, that extra hour of evening light makes a visible difference in daily life.</p>
-    <div class="two-col-vis">
-      <div class="vis-section">
-        <div id="daylight-time-chart"></div>
-      </div>
-      <div class="vis-section">
-
-        <div class="icbc-vis">
-            </div>
-             </div>
-  </div>
-    </section>
     
-    <section class="slide" id="slide-6">
-      <!-- concluison -->
+    <!-- More light matters section -->
+    <section class="slide" id="slide-3">
+    </section>
+
+    <!-- Sleep section -->
+   <section class="slide" id="slide-4">
+      <div class="main-section">
+        <h1>Case for Standard Time</h1>
+        <p>Under Permanent Standard Time, sunrise times align more closely with our natural circadian rhythm.<br>
+    　　　　Morning light is the most powerful cue for our internal clock.</p>
+        <div class="vis-section">
+          <div id="standard-time-chart"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Futures section -->
+    <section class="slide" id="slide-5">
+      <div class="main-section">
+        <h1>Case for Daylight Time</h1>
+        <p>DST extends evening daylight by one hour year-round.<br>
+    　　　For most of people, that extra hour of evening light makes a visible difference in daily life.</p>
+        <div class="two-col-vis">
+          <div class="vis-section">
+            <div id="daylight-time-chart"></div>
+          </div>
+          <div class="vis-section">
+            <div class="icbc-vis"></div>
+          </div>
+        </div>
+      </div>
     </section>
     
   </main>
