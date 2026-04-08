@@ -1,57 +1,25 @@
-/*Reddit comment chart*/
-const redditChart  = {
-  "width": 600,
-  "height": 400,
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "What do people actually want?",
-  "data": { "url": "data/dst_all_clean.csv" },
-  "transform": [
-    { "filter": "datum.preference != null && datum.preference != ''" }
-  ],
-  "mark": "bar",
-  "encoding": {
-    "y": { 
-      "field": "preference", 
-      "type": "nominal", 
-      "title": null,
-      "sort": "-x"
-    },
-    "x": { 
-      "aggregate": "count", 
-      "type": "quantitative", 
-      "title": "Number of comments" 
-    },
-    "color": { "value": "steelblue" },
-    "tooltip": [
-      { "field": "preference", "type": "nominal", "title": "Preference" },
-      { "aggregate": "count", "type": "quantitative", "title": "Comments" }
-    ]
-  }
-}
-
-vegaEmbed("#reddit-chart", redditChart , {
-  renderer: "svg",
-  actions: false
-})
-
-/* Grouped bar, reasons by preference group */
 const dstGroupedBar = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Topics Discussed by Preference Group",
+    "text": "",
     "anchor": "start",
-    "offset": 15,
+    "offset": 15
   },
   "data": { "url": "data/dst_all_clean.csv" },
+
   "transform": [
     {
-      "filter": "datum.preference != null && datum.preference != '' && datum.preference != 'Unsure' && datum.argument_type != null && datum.argument_type != ''"
+      "filter": "trim(datum.preference) == 'Permanent PDT' || trim(datum.preference) == 'Permanent PST'"
     },
     {
-      "calculate": "datum.preference == 'Permanent PDT' ? 0 : datum.preference == 'Permanent PST' ? 1 : datum.preference == 'Stop switching' ? 2 : 3",
+      "filter": "datum.argument_type != null && datum.argument_type != ''"
+    },
+    {
+      "calculate": "datum.preference == 'Permanent PDT' ? 0 : 1",
       "as": "prefOrder"
     }
   ],
+
   "facet": {
     "row": {
       "field": "preference",
@@ -65,14 +33,16 @@ const dstGroupedBar = {
         "labelAlign": "right",
         "labelAnchor": "middle",
         "labelOrient": "left",
-        "labelPadding": 10,
+        "labelPadding": 10
       }
     }
   },
+
   "spec": {
-    "width": 700,
-    "height": 120,
+    "width": 500,
+    "height": 100,
     "mark": { "type": "bar", "cornerRadiusEnd": 2 },
+
     "encoding": {
       "y": {
         "field": "argument_type",
@@ -81,43 +51,46 @@ const dstGroupedBar = {
         "sort": "-x",
         "axis": { "labelFontSize": 11, "labelLimit": 120 }
       },
+
       "x": {
         "aggregate": "count",
         "type": "quantitative",
         "title": "Number of Comments",
         "axis": { "grid": true },
-        "scale": { "domain": [0, 52] }
+        "scale": { "domain": [0, 55] }
       },
+
       "color": {
         "field": "preference",
         "type": "nominal",
         "scale": {
-          "domain": ["Permanent PDT", "Permanent PST", "Stop switching", "Keep switching"],
-          "range": ["#EFAA2A", "#E8634A", "#4BBFA8", "#5B8ED6"]
+          "domain": ["Permanent PDT", "Permanent PST"],
+          "range": ["#6c95e6", "#E8634A"]
         },
-        "legend":null
+        "legend": null
       },
+
       "opacity": {
         "condition": {
           "test": {
             "or": [
               "datum.preference == 'Permanent PDT' && datum.argument_type == 'Evening light'",
-              "datum.preference == 'Permanent PST' && datum.argument_type == 'Health'",
-              "datum.preference == 'Stop switching' && datum.argument_type == 'Disruption'",
-              "datum.preference == 'Keep switching' && datum.argument_type == 'Morning light'"
+              "datum.preference == 'Permanent PST' && datum.argument_type == 'Health'"
             ]
           },
           "value": 1
         },
         "value": 0.25
       },
+
       "tooltip": [
-        { "field": "preference",    "type": "nominal",      "title": "Preference" },
-        { "field": "argument_type", "type": "nominal",      "title": "Reason" },
-        { "aggregate": "count",     "type": "quantitative", "title": "Comments" }
+        { "field": "preference", "type": "nominal", "title": "Preference" },
+        { "field": "argument_type", "type": "nominal", "title": "Reason" },
+        { "aggregate": "count", "type": "quantitative", "title": "Comments" }
       ]
     }
   },
+
   "resolve": { "scale": { "x": "shared", "y": "independent" } },
   "spacing": 8
 };
