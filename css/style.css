@@ -488,6 +488,50 @@ html, body {
 }
 /* #endregion */
 
+/* region slide-5: safety*/
+
+.main-section.safety h2 {
+ font-size: 2em;
+  font-weight: 700;
+  color: #1a3a5c;
+  margin-bottom: 0.5em;
+}
+
+
+.main-section.safety h3 {
+  font-size: 1em;
+  color: #1B3C62;
+  line-height: 1.6;
+}
+
+.main-section.safety {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.safety-container{ 
+   border: 2px solid #1a3a5c;
+   border-radius: 1rem;
+  background-color: white; 
+   padding:2rem;
+   margin-top:2rem;
+}
+.safety-column.text {
+  text-align: left;
+  padding:2rem;
+  padding-top:8rem;
+}
+
+.safety-column.vis {
+  padding-top:10rem;
+}
+
+@media (min-width: 40rem) {
+  .main-section.safety {
+    grid-template-columns: 1fr 1fr; 
+  }
+}
 /* #region slide-6: futures */
 
 .futures-section {
