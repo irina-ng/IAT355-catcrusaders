@@ -11,12 +11,42 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite-api@5"></script>
   
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nav.css">
+
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/34c23cd801.js" crossorigin="anonymous"></script>
+
   <title>Daylight Saving Time</title>
 </head>
 
+
 <body>
+
+   <header>
+            <nav class="navbar">
+                <div class= "navbar-two-column">
+                    <div>
+                        <a class="nav-logo" href="index.html"><h1>Daylight Saving</h1></a>
+                    </div>
+
+                    <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
+                <div class="nav-button" id="menu">
+                    <a class="nav-item" href="#slide-1">About</a>
+                    <a class="nav-item" href="#slide-2">Community</a>
+                    <a class="nav-item" href="#slide-3">Light</a>
+                     <a class="nav-item" href="#slide-4">Sleep</a>
+                      <a class="nav-item" href="#slide-5">Safety</a>
+                
+                </div>
+            </nav>
+        </header>
+ 
+        
   <main class="scroll-container">
     <!-- Landing -->
     <section class="slide" id="slide-0">
@@ -220,7 +250,7 @@
     </section>
     
   </main>
-
+  <script src="js/nav.js" defer></script>
   <script src="js/RedditVisualizations.js" defer></script>
   <script src="js/icbcVisualizations.js" defer></script>
   <script src="js/sunriseVisualizations.js" defer></script>
