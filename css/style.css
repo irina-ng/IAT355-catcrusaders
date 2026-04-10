@@ -488,6 +488,92 @@ html, body {
 }
 /* #endregion */
 
+/* region slide-4: sleep*/
+
+.hour{
+  font-size: 8rem;   
+  font-weight: bold;
+    font-weight: 700;
+  color: #1a3a5c;
+}
+
+.hour-text{
+  font-size: 3rem;   
+  font-weight: bold;
+    font-weight: 700;
+  color: #1a3a5c;
+  padding-left:1rem;
+}
+
+.sleep-percentage{
+  font-size: 3rem;   
+  font-weight: bold;
+    font-weight: 700;
+  color: #1a3a5c;
+  padding-left:1rem;
+}
+
+.main-section.sleep h2 {
+ font-size: 2em;
+  font-weight: 700;
+  color: #1a3a5c;
+  margin-bottom: 0.5em;
+   text-align: left;
+}
+
+.main-section.sleep h3 {
+  font-size: 1em;
+  color: #1B3C62;
+  line-height: 1.6;
+}
+
+.main-section.sleep {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+}
+
+.sleep-container.info{ 
+   border: 2px solid #1a3a5c;
+   border-radius: 1rem;
+  background-color: white; 
+   padding:2rem;
+   margin-top:2rem;
+}
+
+.sleep-container.right h3,p{
+   text-align: left;
+}
+
+.main-section.sleep {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.sleep-line{
+   height: 0.0625rem; 
+  background-color: #e0e0e0;
+  margin: 1.5rem 0;
+}
+
+@media (min-width: 40rem) {
+  .main-section.sleep {
+    grid-template-columns: 1fr 1fr; 
+      margin:5rem;
+      gap:5rem;
+  }
+}
+
+ .sleep-bottom.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  }
+
+/* #endregion */
+
 /* region slide-5: safety*/
 
 .main-section.safety h2 {
@@ -532,6 +618,9 @@ html, body {
     grid-template-columns: 1fr 1fr; 
   }
 }
+
+/* #endregion */
+
 /* #region slide-6: futures */
 
 .futures-section {
