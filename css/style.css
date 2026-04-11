@@ -488,7 +488,7 @@ html, body {
 }
 /* #endregion */
 
-/* region slide-4: sleep*/
+/* #region slide-4: sleep*/
 
 .sleep-hour{
   font-size: 8rem;   
@@ -574,7 +574,7 @@ html, body {
 
 /* #endregion */
 
-/* region slide-5: safety*/
+/* #region slide-5: safety*/
 
 .main-section.safety h2 {
  font-size: 2em;
