@@ -488,6 +488,10 @@ html, body {
 }
 /* #endregion */
 
+/* #region slide-3: light section */
+
+/* #endregion */
+
 /* #region slide-4: sleep*/
 
 .sleep-hour{
@@ -513,7 +517,7 @@ html, body {
   padding-left:1rem;
 }
 
-.main-section.sleep h2 {
+.sleep-section h2 {
  font-size: 2em;
   font-weight: 700;
   color: #1a3a5c;
@@ -521,17 +525,17 @@ html, body {
    text-align: left;
 }
 
-.main-section.sleep h3 {
+.sleep-section h3 {
   font-size: 1em;
   color: #1B3C62;
   line-height: 1.6;
 }
 
-.main-section.sleep {
+.sleep-section {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-
+  padding: 60px 40px;
 }
 
 .sleep-container.info{ 
@@ -546,12 +550,6 @@ html, body {
    text-align: left;
 }
 
-.main-section.sleep {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
 .sleep-line{
    height: 0.0625rem; 
   background-color: #e0e0e0;
@@ -559,7 +557,7 @@ html, body {
 }
 
 @media (min-width: 40rem) {
-  .main-section.sleep {
+  .sleep-section {
     grid-template-columns: 1fr 1fr; 
       margin:5rem;
       gap:5rem;
@@ -576,7 +574,7 @@ html, body {
 
 /* #region slide-5: safety*/
 
-.main-section.safety h2 {
+.safety-section h2 {
  font-size: 2em;
   font-weight: 700;
   color: #1a3a5c;
@@ -584,16 +582,17 @@ html, body {
 }
 
 
-.main-section.safety h3 {
+.safety-section h3 {
   font-size: 1em;
   color: #1B3C62;
   line-height: 1.6;
 }
 
-.main-section.safety {
+.safety-section {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  padding: 60px 40px;
 }
 
 .safety-container{ 
@@ -614,7 +613,7 @@ html, body {
 }
 
 @media (min-width: 40rem) {
-  .main-section.safety {
+  .safety-section {
     grid-template-columns: 1fr 1fr; 
   }
 }
