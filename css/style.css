@@ -490,6 +490,15 @@ html, body {
 /* #endregion */
 
 /* #region slide-3: light section */
+.light-section {
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f0f4f8;
+  display: flex;
+  flex-direction: column;
+}
+
 
 /* #endregion */
 
