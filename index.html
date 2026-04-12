@@ -138,63 +138,89 @@
     <!-- More light matters section -->
     <section class="slide" id="slide-3">
       <div class="light-section">
-        <h1>More Light When It Matters</h1>
-        <p>When does sun rise and set for each major Canadian city and seasons? Sunlight provides visibility for people and safety</p>
-        <div class="vis-section">
-          <div id="standard-time-chart"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sleep section -->
-    <section class="slide" id="slide-4">
-      <div class="sleep-section">
-        
-        <div>
-        <h2>Sleep Disruption</h2>
-
-        <div class ="sleep-container info">
-     
-          <div class="sleep-top">
-          <p> Spring Forward Impact</p>
-
-          <div class="sleep-header"></div>
-          <span class="sleep-hour">-1</span>
-          <span class="hour-text">HR</span>
-          
+        <div class="light-top-row">
+          <div class="light-title">
+            <h1>More Light When It Matters</h1>
+            <p>Light provides visibility and safety.</p>
           </div>
-          <div class="sleep-line"> </div>
 
-            <div class="sleep-middle"> </div>
-            <p>Lost on the night clocks spring forward. The disruption lingers for days.</p>
-
-            <div class ="sleep-bottom row"> 
-              <div>
-               
-                   <span class="sleep-percentage">+6%</span>
-                <p>fatal accidents week after switch</p>
-                
-              </div>
-               <div>
-                   <span class="sleep-percentage">+24%</span>
-                <p>heart attacks on switch Monday</p>
-                
-              </div>
-
+          <div class="light-controls">
+            <select id="city-select" class="city-select"></select>
+            
+            <div class="dst-toggle-group">
+              <span>Daylight Saving Time</span>
+              <label class="switch">
+                <input type="checkbox" id="dst-toggle" checked>
+                <span class="slider"></span>
+              </label>
+              <span>Standard Time</span>
             </div>
-        </div>
+          </div>
         </div>
 
-         <div class ="sleep-container right">
-        <h3>The Circadian Rhythm Disruption</h3>
-        <p>Morning sunlight is the most powerful cue for our internal clock. When clocks shift abruptly, the body takes days to readjust, affecting sleep quality, mood, and alertness.</p>
+        <!-- Chart -->
         <div class="vis-section">
-          <div id="standard-time-chart"></div>
+          <div id="daylight-time-chart"></div>
         </div>
+
+        <!-- Slider  -->
+        <div class="slider-bottom">
+          <label for="time-slider">Time of Day <span id="selected-time">3:00 PM</span></label>
+          <input type="range" id="time-slider" min="0" max="23.75" step="0.25" value="15">
         </div>
 
       </div>
     </section>
+
+      <!-- Sleep section -->
+      <section class="slide" id="slide-4">
+        <div class="sleep-section">
+          
+          <div>
+          <h2>Sleep Disruption</h2>
+
+          <div class ="sleep-container info">
+      
+            <div class="sleep-top">
+            <p> Spring Forward Impact</p>
+
+            <div class="sleep-header"></div>
+            <span class="sleep-hour">-1</span>
+            <span class="hour-text">HR</span>
+            
+            </div>
+            <div class="sleep-line"> </div>
+
+              <div class="sleep-middle"> </div>
+              <p>Lost on the night clocks spring forward. The disruption lingers for days.</p>
+
+              <div class ="sleep-bottom row"> 
+                <div>
+                
+                    <span class="sleep-percentage">+6%</span>
+                  <p>fatal accidents week after switch</p>
+                  
+                </div>
+                <div>
+                    <span class="sleep-percentage">+24%</span>
+                  <p>heart attacks on switch Monday</p>
+                  
+                </div>
+
+              </div>
+          </div>
+          </div>
+
+          <div class ="sleep-container right">
+          <h3>The Circadian Rhythm Disruption</h3>
+          <p>Morning sunlight is the most powerful cue for our internal clock. When clocks shift abruptly, the body takes days to readjust, affecting sleep quality, mood, and alertness.</p>
+          <div class="vis-section">
+            <div id="standard-time-chart"></div>
+          </div>
+          </div>
+
+        </div>
+      </section>
 
    <!--OLD CODE <section class="slide" id="slide-4">
       <div class="main-section">
@@ -324,5 +350,6 @@
   <script src="js/RedditVisualizations.js" defer></script>
   <script src="js/icbcVisualizations.js" defer></script>
   <script src="js/sunriseVisualizations.js" defer></script>
+  <script src="js/lightVisualizations.js" defer></script>
 </body>
 </html>
