@@ -1,4 +1,3 @@
-/* Nav Bar */
 nav a {
     color:#1B3C62;
 }
@@ -11,48 +10,40 @@ header {
   margin-top: 0;
   padding: 0 1rem;
   background-color: #FDFDFD;
-  box-shadow: 0 8px 4px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 4px -8px rgba(0, 0, 0, 0.3);
 }
-
-
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1rem;
-
+  padding: 0.5rem 1rem;
 }
-
 .nav-logo {
   text-decoration: none;
   display: flex;
   align-items: center;
 }
-
 .nav-button{
   display: flex;
   align-items: center;
   justify-content: space-around;
   gap: 1.5rem;
 }
-
 .nav-item {
   color: #1B3C62;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.875rem;
   padding-left: 0.75rem; 
-  padding-top: 1rem; 
-   padding-bottom: 1rem; 
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   text-decoration: none;
 }
-
 .nav-button a:hover, a:focus, a:active{
   color: #1B3C62;
   text-underline-offset: 0.6rem;
   text-decoration-thickness: 0.1rem;
   font-weight: bold;
 }
-
 .menu-toggle {
   display: none;
   background: none;
@@ -61,19 +52,15 @@ header {
   color: #1B3C62;
   cursor: pointer;
 }
-
-  .nav-logo h1{
-    font-size: 1.75rem;
-  }
-
-
+.nav-logo h1{
+  font-size: 1.25rem;
+}
 @media (max-width: 55rem) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
   }
-
   .navbar-two-column {
     display: flex;
     flex-direction: row;  
@@ -82,43 +69,33 @@ header {
     justify-content: space-between;
     width: 100%;
   }
-
   .menu-toggle {
     display: block; 
     align-items: center;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.4rem;
   }
-
   .nav-button {
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
     width: 100%;
   }
-
   .nav-item {
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
   }
-
   .hidden{
     display: none;
   }
-
-
-
 }
-
 @media (max-width: 23.75rem) {
   .navbar {
-    padding: 1rem 0.2rem;
+    padding: 0.5rem 0.2rem;
   }
-
   .nav-logo h1{
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
-
   .menu-toggle {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
   }
 }
