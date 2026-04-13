@@ -24,9 +24,10 @@ fetchData().then(async (data) => {
         .fieldQ("Unrounded Count")
         .title("Crashes")
         .scale({
-          scheme: "yelloworangered",
-          domain: [0, 3500]
-        }),
+  range: ["#1f2f6b", "#f0c7c7", "#c81818"],
+  domain: [0, 3500]
+})
+,
       vl.tooltip([
         vl.fieldN("Month"),
         vl.fieldN("Year"),
@@ -34,8 +35,10 @@ fetchData().then(async (data) => {
       ])
     )
     .title({
-      text: "Crashes between 2020–2025 by months"
-    })
+  text: "The ICBC Crash Heatmap",
+  fontSize: 18,
+  anchor: "middle"
+})
     .toSpec();
 
   render(".icbc-vis", icbc);
