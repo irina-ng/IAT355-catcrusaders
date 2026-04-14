@@ -83,7 +83,7 @@ function drawSun(timeDecimal, dayData, showDST) {
   ctx.clearRect(0, 0, w, h);
 
   // sky gradient
-  let topColor = '#0a1428', bottomColor = '#1a2a4a';
+  let topColor = 'rgb(6, 11, 49)', bottomColor = '#4a361a';
   if (timeDecimal >= 5 && timeDecimal <= 21) {
     if (timeDecimal < 7 || timeDecimal > 19) {
       topColor = '#1e3a6b';
