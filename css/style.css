@@ -595,6 +595,12 @@ input:checked + .slider:before {
   accent-color: #1a3a5c;
 }
 
+#tick-labels{
+  display: flex; 
+  justify-content: space-between; 
+  margin-top: 6px;
+} 
+
 /* #endregion */
 
 /* #region slide-4: sleep*/
