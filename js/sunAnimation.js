@@ -14,7 +14,7 @@ slider.addEventListener('input', () => {
 });
 
 const tickContainer = document.getElementById('tick-labels');
-const labels = ['12am', '3am', '6am', '9am', '12pm', '3pm', '6pm', '9pm', '11am,'];
+const labels = ['12am', '3am', '6am', '9am', '12pm', '3pm', '6pm', '9pm', '12pm,'];
 
 labels.forEach(label => {
   const span = document.createElement('span');

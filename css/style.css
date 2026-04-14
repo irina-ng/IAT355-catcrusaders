@@ -491,7 +491,8 @@ html, body {
 
 /* #region slide-3: light section */
 .light-section {
-  max-width: 1200px;
+  padding: 60px 40px;
+  max-width: 1600px;
   background-color: #f0f4f8;
 }
 
@@ -510,14 +511,22 @@ html, body {
 /* controls */
 .light-controls {
   display: flex;
-  align-items: center;
+  align-items:flex-start;
   gap: 2rem;
   flex-wrap: wrap;
 }
 
 .city-select {
-  padding: 0.75rem 1.2rem;
-  border: 2px solid #1a3a5c;
+  padding: 0.3rem 1rem;
+  border: 1px solid #1a3a5c;
+  border-radius: 8px;
+  font-size: 1.05em;
+  min-width: 180px;
+}
+
+.month-select {
+  padding: 0.3rem 1rem;
+  border: 1px solid #1a3a5c;
   border-radius: 8px;
   font-size: 1.05em;
   min-width: 180px;
