@@ -137,44 +137,49 @@
     
     <!-- More light matters section -->
     <section class="slide" id="slide-3">
-      <div class="light-section">
-        <div class="light-top-row">
-          <div class="light-title">
-            <h1>More Light When It Matters</h1>
-            <p>Light provides visibility and safety.</p>
-          </div>
-
-          <div class="light-controls">
-            <select id="city-select" class="city-select"></select>
-            <select id="month-select" class="month-select"></select>
+      <div id="sun-animation-container">
+        <canvas id="sun-canvas"></canvas>
+        
+        <!-- Overlay -->
+        <div class="overlay-content">
+          
+          <div class="light-top-row">
+            <div class="light-title">
+              <h1>More Light When It Matters</h1>
+              <p>Light provides visibility and safety.</p>
+            </div>
             
-            <div class="dst-toggle-group">
-              <span>Standard Time</span>
-              <label class="switch">
-                <input type="checkbox" id="dst-toggle" checked>
-                <span class="slider"></span>
-              </label>
-              <span>Daylight Saving Time</span>
+            <div class="light-controls">
+              <select id="city-select" class="city-select"></select>
+              <select id="month-select" class="month-select"></select>
+              
+              <div class="dst-toggle-group">
+                <span>Standard Time</span>
+                <label class="switch">
+                  <input type="checkbox" id="dst-toggle" checked>
+                  <span class="slider"></span>
+                </label>
+                <span>Daylight Saving Time</span>
+              </div>
+            </div>
+            
+            <div class="sun-times">
+              <div id="current-date"></div>
+              Sunrise: <span id="info-sunrise"></span><br>
+              Sunset: <span id="info-sunset"></span>
             </div>
           </div>
-        </div>
 
-        <!-- Chart -->
-        <div id="sun-animation-container">
-          <canvas id="sun-canvas" width="1200" height="380"></canvas>
-          
-          <!-- Info -->
-          <div id="sun-info">
-            <strong id="current-date"></strong><br>
-            Sunrise: <span id="info-sunrise"></span> | Sunset: <span id="info-sunset"></span>
+          <!-- Bottom slider -->
+          <div class="slider-bottom">
+            <label for="time-slider">
+              Time of Day <span id="selected-time">12:00 AM</span>
+            </label>
+            <input type="range" id="time-slider" min="0" max="23.75" step="0.5" value="15">
+            <div id="tick-labels"></div>
           </div>
-        </div>
 
-        <!-- Slider  -->
-        <div class="slider-bottom">
-          <label for="time-slider">Time of Day <span id="selected-time">12:00 AM</span></label>
-          <input type="range" id="time-slider" min="0" max="23.75" step="0.5" value="15">
-          <div id="tick-labels"></div>
+        </div>
       </div>
     </section>
 

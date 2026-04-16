@@ -1,5 +1,4 @@
 // Sun Animation. when toggle is on, adds one hour to the time
-
 let sunData = [];
 let cities = [];
 let currentCity = "Vancouver";
@@ -47,6 +46,7 @@ async function loadSunData() {
   }
 }
 
+//selected city and date
 function populateSelects() {
   const citySelect = document.getElementById('city-select');
   citySelect.innerHTML = cities.map(city => 
@@ -94,8 +94,8 @@ function drawSun(timeDecimal, dayData, showDST) {
   const h = canvas.height;
   ctx.clearRect(0, 0, w, h);
 
-  // sky gradient
-  let topColor = 'rgb(6, 11, 49)', bottomColor = '#4a361a';
+  // Sky gradient
+  let topColor = '#0a1428', bottomColor = '#1a2a4a';
   if (timeDecimal >= 5 && timeDecimal <= 21) {
     if (timeDecimal < 7 || timeDecimal > 19) {
       topColor = '#1e3a6b';
@@ -106,16 +106,16 @@ function drawSun(timeDecimal, dayData, showDST) {
     }
   }
 
-  const skyGrad = ctx.createLinearGradient(0, 0, 0, h * 0.79);
+  // Sky
+  const skyGrad = ctx.createLinearGradient(0, 0, 0, h * 0.87);
   skyGrad.addColorStop(0, topColor);
   skyGrad.addColorStop(1, bottomColor);
   ctx.fillStyle = skyGrad;
-  ctx.fillRect(0, 0, w, h * 0.79);
+  ctx.fillRect(0, 0, w, h);
 
   let sunrise = timeToDecimal(dayData ? dayData.Sunrise : null);
   let sunset  = timeToDecimal(dayData ? dayData.Sunset : null);
 
-  // toggle: showDST if true +1 hour for DST, if false CSV standard
   if (showDST) {
     if (sunrise !== null) sunrise += 1;
     if (sunset  !== null) sunset  += 1;
@@ -128,23 +128,26 @@ function drawSun(timeDecimal, dayData, showDST) {
     else progress = (timeDecimal - sunrise) / (sunset - sunrise);
   }
 
-  const sunX = w * (0.12 + progress * 0.76);
+  // Sun position
+  const sunX = w * (0.15 + progress * 0.70);
   const heightFactor = Math.sin(progress * Math.PI);
-  let sunY = h * 0.76 - heightFactor * (h * 0.26);
+  let sunY = h * 0.80 - heightFactor * (h * 0.19);
 
-  const horizonY = h * 0.79;
+  const horizonY = h * 0.85;
 
-  if (sunY < horizonY - 18) {
+  // Draw sun only when its daytime and above horizon
+  if (timeDecimal >= sunrise && timeDecimal <= sunset && sunY < horizonY - 28) {
     ctx.fillStyle = '#ffeb3b';
     ctx.beginPath();
-    ctx.arc(sunX, sunY, 30, 0, Math.PI * 2);
+    ctx.arc(sunX, sunY, 31, 0, Math.PI * 2);
     ctx.fill();
   }
 
+  // Ground
   ctx.fillStyle = '#1e3a2f';
   ctx.fillRect(0, horizonY, w, h - horizonY);
 
-  // update sunset/sunrse times
+  // Update info
   if (dayData) {
     document.getElementById('current-date').textContent = 
       `${new Date(2026, currentMonth-1, 15).toLocaleString('default', { month: 'long' })} 15, 2026`;
