@@ -9,6 +9,18 @@ let currentTimeDecimal = 14;
 const canvas = document.getElementById('sun-canvas');
 const ctx = canvas.getContext('2d');
 
+function resizeCanvas() {
+  const container = document.getElementById('sun-animation-container');
+  canvas.width = container.clientWidth;
+  canvas.height = container.clientHeight;
+}
+
+//when window resize for responsiveness
+window.addEventListener('resize', () => {
+  resizeCanvas();
+  updateVisualization(); 
+});
+
 async function loadSunData() {
   try {
     const response = await fetch('data/canada_sun_2026.csv');
@@ -189,6 +201,7 @@ function formatTime(value) {
 // Start
 window.addEventListener('load', () => {
   loadSunData();
+  resizeCanvas();
 
   const tickContainer = document.getElementById('tick-labels');
   tickContainer.innerHTML = '';

@@ -610,33 +610,64 @@ input:checked + .slider:before {
   margin-top: 6px;
 } 
 
+
 #sun-animation-container {
+  width: 100%;
+  max-width: 1600px;
+  height: 420px;
+  position: relative;
+  background: #0a1428;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 25px auto;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  height: 380px; 
-  position: relative; 
-  background: #0a1428; 
-  border-radius: 12px; 
-  overflow: hidden; 
-  margin: 20px 0;
 }
 
-#sun-canvas{
-  width: 100%; 
-  height: auto; 
+#sun-canvas {
+  width: 100% !important;
+  height: 100% !important;
   display: block;
 }
 
 #sun-info {
-  position: absolute; 
-  top: 15px; 
-  left: 15px; 
-  color: white; 
-  font-size: 14px; 
-  background: rgba(0,0,0,0.4); 
-  padding: 8px 12px; 
-  border-radius: 6px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  font-size: 15px;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 10px 14px;
+  border-radius: 8px;
+  line-height: 1.4;
+  z-index: 10;
+  max-width: 260px;
 }
 
+@media (max-width: 768px) {
+  #sun-animation-container {
+    height: 340px;
+  }
+  
+  #sun-info {
+    top: 12px;
+    left: 12px;
+    font-size: 13px;
+    padding: 8px 12px;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .light-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .city-select, .month-select {
+    min-width: auto;
+  }
+}
 
 
 /* #endregion */
