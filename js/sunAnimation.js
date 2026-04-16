@@ -1,4 +1,4 @@
-// Sun Animation. when toggle is on, adds one hour to the time
+// Sun Animation - Fixed sky colors using real dataset times
 let sunData = [];
 let cities = [];
 let currentCity = "Vancouver";
@@ -14,7 +14,7 @@ function resizeCanvas() {
   canvas.height = container.clientHeight;
 }
 
-//when window resize for responsiveness
+// Responsiveness
 window.addEventListener('resize', () => {
   resizeCanvas();
   updateVisualization(); 
@@ -46,7 +46,6 @@ async function loadSunData() {
   }
 }
 
-//selected city and date
 function populateSelects() {
   const citySelect = document.getElementById('city-select');
   citySelect.innerHTML = cities.map(city => 
@@ -94,37 +93,53 @@ function drawSun(timeDecimal, dayData, showDST) {
   const h = canvas.height;
   ctx.clearRect(0, 0, w, h);
 
-  // Sky: time, topColor, bottomColor
-  const skyFrames = [
-    [0,    '#0a1428', '#1a2a4a'],
-    [4.5,  '#1a1a4a', '#37220a'],
-    [5.5,  '#1e3a6b', '#ffab6b'],
-    [7,    '#2a5a9b', '#ffde5c'],
-    [8.5,  '#5eb3ff', '#b0e0ff'],
-    [13,   '#4aa8ff', '#90d4ff'],
-    [17,   '#5eb3ff', '#b0e0ff'],
-    [18.5, '#2a4a8a', '#ffde5c'],
-    [19.5, '#1e2a6b', '#ffab6b'],
-    [20.5, '#2d1b69', '#704118'],
-    [22,   '#0d1b3e', '#1a2a5c'],
-    [24,   '#0a1428', '#1a2a4a'],
+  // Get times from data
+  let sunrise     = timeToDecimal(dayData ? dayData.Sunrise : null);
+  let sunset      = timeToDecimal(dayData ? dayData.Sunset : null);
+  let nauticalDawn = timeToDecimal(dayData ? dayData['Nautical Twilight Start'] : null);
+  let civilDawn   = timeToDecimal(dayData ? dayData['Civil Twilight Start'] : null);
+  let civilDusk   = timeToDecimal(dayData ? dayData['Civil Twilight End'] : null);
+  let nauticalDusk= timeToDecimal(dayData ? dayData['Nautical Twilight End'] : null);
+  let solarNoon   = timeToDecimal(dayData ? dayData['Solar Noon'] : null);
+
+  // dst shift
+  if (showDST) {
+    if (nauticalDawn !== null) nauticalDawn += 1;
+    if (civilDawn   !== null) civilDawn   += 1;
+    if (sunrise     !== null) sunrise     += 1;
+    if (sunset      !== null) sunset      += 1;
+    if (civilDusk   !== null) civilDusk   += 1;
+    if (nauticalDusk!== null) nauticalDusk+= 1;
+    if (solarNoon   !== null) solarNoon   += 1;
+  }
+
+  // based on data
+  let skyFrames = [
+    [0, '#0a1428', '#1a2a4a'], 
   ];
 
-  function hexToRgb(hex) {
-    const r = parseInt(hex.slice(1,3), 16);
-    const g = parseInt(hex.slice(3,5), 16);
-    const b = parseInt(hex.slice(5,7), 16);
-    return [r, g, b];
+  if (nauticalDawn !== null) skyFrames.push([nauticalDawn, '#1a1a4a', '#37220a']);
+  if (civilDawn   !== null) skyFrames.push([civilDawn,   '#1e3a6b', '#ffab6b']);
+  if (sunrise     !== null) {
+    skyFrames.push([sunrise,     '#2a5a9b', '#ffde5c']);
+    skyFrames.push([sunrise + 1.5, '#5eb3ff', '#b0e0ff']);
   }
 
-  function lerpColor(a, b, t) {
-    const [r1,g1,b1] = hexToRgb(a);
-    const [r2,g2,b2] = hexToRgb(b);
-    const r  = Math.round(r1 + (r2-r1) * t);
-    const g  = Math.round(g1 + (g2-g1) * t);
-    const bl = Math.round(b1 + (b2-b1) * t);
-    return `rgb(${r},${g},${bl})`;
+  const midday = solarNoon !== null ? solarNoon : 13;
+  skyFrames.push([midday, '#4aa8ff', '#90d4ff']);
+
+  if (sunset !== null) {
+    skyFrames.push([sunset - 1.0, '#5eb3ff', '#b0e0ff']); 
+    skyFrames.push([sunset,       '#2a4a8a', '#ffde5c']); 
   }
+  if (civilDusk   !== null) skyFrames.push([civilDusk,   '#1e2a6b', '#ffab6b']);
+  if (nauticalDusk!== null) skyFrames.push([nauticalDusk, '#2d1b69', '#704118']);
+
+  const lateDusk = nauticalDusk !== null ? nauticalDusk + 1.2 : 22;
+  skyFrames.push([lateDusk, '#0d1b3e', '#1a2a5c']);
+  skyFrames.push([24, '#0a1428', '#1a2a4a']);
+
+  skyFrames.sort((a, b) => a[0] - b[0]);
 
   let topColor = '#0a1428', bottomColor = '#1a2a4a';
   for (let i = 0; i < skyFrames.length - 1; i++) {
@@ -138,21 +153,14 @@ function drawSun(timeDecimal, dayData, showDST) {
     }
   }
 
-  // Sky
+  // Sky gradient
   const skyGrad = ctx.createLinearGradient(0, 0, 0, h * 0.87);
   skyGrad.addColorStop(0, topColor);
   skyGrad.addColorStop(1, bottomColor);
   ctx.fillStyle = skyGrad;
   ctx.fillRect(0, 0, w, h);
 
-  let sunrise = timeToDecimal(dayData ? dayData.Sunrise : null);
-  let sunset  = timeToDecimal(dayData ? dayData.Sunset : null);
-
-  if (showDST) {
-    if (sunrise !== null) sunrise += 1;
-    if (sunset  !== null) sunset  += 1;
-  }
-
+  // Calculate sun progress
   let progress = 0.5;
   if (sunrise !== null && sunset !== null) {
     if (timeDecimal <= sunrise) progress = 0;
@@ -167,8 +175,10 @@ function drawSun(timeDecimal, dayData, showDST) {
 
   const horizonY = h * 0.85;
 
-  // Draw sun when its daytime and above horizon
-  if (timeDecimal >= sunrise && timeDecimal <= sunset && sunY < horizonY - 28) {
+  // Draw sun during daytime and above horizon
+  if (sunrise !== null && sunset !== null &&
+      timeDecimal >= sunrise && timeDecimal <= sunset && 
+      sunY < horizonY - 28) {
     ctx.fillStyle = '#ffeb3b';
     ctx.beginPath();
     ctx.arc(sunX, sunY, 31, 0, Math.PI * 2);
@@ -179,7 +189,7 @@ function drawSun(timeDecimal, dayData, showDST) {
   ctx.fillStyle = '#182d41';
   ctx.fillRect(0, horizonY, w, h - horizonY);
 
-  // Update info
+  // Update 
   if (dayData) {
     document.getElementById('current-date').textContent = 
       `${new Date(2026, currentMonth-1, 15).toLocaleString('default', { month: 'long' })} 15, 2026`;
@@ -202,6 +212,23 @@ function drawSun(timeDecimal, dayData, showDST) {
     document.getElementById('info-sunrise').textContent = displayRise;
     document.getElementById('info-sunset').textContent = displaySet;
   }
+}
+
+// color
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3), 16);
+  const g = parseInt(hex.slice(3,5), 16);
+  const b = parseInt(hex.slice(5,7), 16);
+  return [r, g, b];
+}
+
+function lerpColor(a, b, t) {
+  const [r1,g1,b1] = hexToRgb(a);
+  const [r2,g2,b2] = hexToRgb(b);
+  const r  = Math.round(r1 + (r2-r1) * t);
+  const g  = Math.round(g1 + (g2-g1) * t);
+  const bl = Math.round(b1 + (b2-b1) * t);
+  return `rgb(${r},${g},${bl})`;
 }
 
 function updateVisualization() {
