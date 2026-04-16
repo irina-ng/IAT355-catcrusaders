@@ -94,15 +94,47 @@ function drawSun(timeDecimal, dayData, showDST) {
   const h = canvas.height;
   ctx.clearRect(0, 0, w, h);
 
-  // Sky gradient
+  // Sky: time, topColor, bottomColor
+  const skyFrames = [
+    [0,    '#0a1428', '#1a2a4a'],
+    [4.5,  '#1a1a4a', '#37220a'],
+    [5.5,  '#1e3a6b', '#ffab6b'],
+    [7,    '#2a5a9b', '#ffde5c'],
+    [8.5,  '#5eb3ff', '#b0e0ff'],
+    [13,   '#4aa8ff', '#90d4ff'],
+    [17,   '#5eb3ff', '#b0e0ff'],
+    [18.5, '#2a4a8a', '#ffde5c'],
+    [19.5, '#1e2a6b', '#ffab6b'],
+    [20.5, '#2d1b69', '#704118'],
+    [22,   '#0d1b3e', '#1a2a5c'],
+    [24,   '#0a1428', '#1a2a4a'],
+  ];
+
+  function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1,3), 16);
+    const g = parseInt(hex.slice(3,5), 16);
+    const b = parseInt(hex.slice(5,7), 16);
+    return [r, g, b];
+  }
+
+  function lerpColor(a, b, t) {
+    const [r1,g1,b1] = hexToRgb(a);
+    const [r2,g2,b2] = hexToRgb(b);
+    const r  = Math.round(r1 + (r2-r1) * t);
+    const g  = Math.round(g1 + (g2-g1) * t);
+    const bl = Math.round(b1 + (b2-b1) * t);
+    return `rgb(${r},${g},${bl})`;
+  }
+
   let topColor = '#0a1428', bottomColor = '#1a2a4a';
-  if (timeDecimal >= 5 && timeDecimal <= 21) {
-    if (timeDecimal < 7 || timeDecimal > 19) {
-      topColor = '#1e3a6b';
-      bottomColor = '#ff9a5c';
-    } else {
-      topColor = '#5eb3ff';
-      bottomColor = '#b0e0ff';
+  for (let i = 0; i < skyFrames.length - 1; i++) {
+    const [t0, top0, bot0] = skyFrames[i];
+    const [t1, top1, bot1] = skyFrames[i + 1];
+    if (timeDecimal >= t0 && timeDecimal <= t1) {
+      const t = (timeDecimal - t0) / (t1 - t0);
+      topColor    = lerpColor(top0, top1, t);
+      bottomColor = lerpColor(bot0, bot1, t);
+      break;
     }
   }
 
@@ -135,7 +167,7 @@ function drawSun(timeDecimal, dayData, showDST) {
 
   const horizonY = h * 0.85;
 
-  // Draw sun only when its daytime and above horizon
+  // Draw sun when its daytime and above horizon
   if (timeDecimal >= sunrise && timeDecimal <= sunset && sunY < horizonY - 28) {
     ctx.fillStyle = '#ffeb3b';
     ctx.beginPath();
@@ -144,7 +176,7 @@ function drawSun(timeDecimal, dayData, showDST) {
   }
 
   // Ground
-  ctx.fillStyle = '#1e3a2f';
+  ctx.fillStyle = '#182d41';
   ctx.fillRect(0, horizonY, w, h - horizonY);
 
   // Update info
