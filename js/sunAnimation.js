@@ -160,29 +160,48 @@ function drawSun(timeDecimal, dayData, showDST) {
   ctx.fillStyle = skyGrad;
   ctx.fillRect(0, 0, w, h);
 
-  // Calculate sun progress
+  // sun progress and draw
   let progress = 0.5;
   if (sunrise !== null && sunset !== null) {
-    if (timeDecimal <= sunrise) progress = 0;
-    else if (timeDecimal >= sunset) progress = 1;
-    else progress = (timeDecimal - sunrise) / (sunset - sunrise);
+    if (timeDecimal <= sunrise) {
+      progress = 0;
+    } else if (timeDecimal >= sunset) {
+      progress = 1;
+    } else {
+      let rawProgress = (timeDecimal - sunrise) / (sunset - sunrise);
+      
+      progress = Math.pow(rawProgress, 0.55);
+    }
   }
 
-  // Sun position
   const sunX = w * (0.15 + progress * 0.70);
-  const heightFactor = Math.sin(progress * Math.PI);
-  let sunY = h * 0.80 - heightFactor * (h * 0.19);
+
+  let heightFactor = Math.sin(progress * Math.PI);
+  heightFactor = Math.pow(heightFactor, 0.88); 
+
+  let sunY = h * 0.79 - heightFactor * (h * 0.23); 
 
   const horizonY = h * 0.85;
 
-  // Draw sun during daytime and above horizon
+  // Draw sun  when it's daytime and clearly above horizon
   if (sunrise !== null && sunset !== null &&
       timeDecimal >= sunrise && timeDecimal <= sunset && 
-      sunY < horizonY - 28) {
+      sunY < horizonY - 25) {
+    
     ctx.fillStyle = '#ffeb3b';
     ctx.beginPath();
     ctx.arc(sunX, sunY, 31, 0, Math.PI * 2);
     ctx.fill();
+
+    //glow
+    ctx.save();
+    ctx.shadowColor = '#ffe050';
+    ctx.shadowBlur = 28;
+    ctx.fillStyle = 'rgba(255, 240, 100, 0.35)';
+    ctx.beginPath();
+    ctx.arc(sunX, sunY, 37, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
   }
 
   // Ground
