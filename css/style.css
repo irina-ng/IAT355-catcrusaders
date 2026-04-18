@@ -30,6 +30,7 @@ html, body {
   scroll-snap-type: y mandatory;
 }
 
+
 /* section fill screen */
 .slide {
   height: 100vh;
@@ -157,9 +158,44 @@ html, body {
 /* #endregion */
 
 /* #region slide-0: hero */
-#slide-0 {
+/* #slide-0 {
   background: linear-gradient(to bottom, #7DD4F0 38%, #C6EAF5 100%);
   overflow: hidden;
+} */
+
+#slide-0 {
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    -45deg,
+    #8ED9F4 0%,
+    #4aa3e0 25%,
+    #0B56A1 50%,
+    #062c5e 75%,
+    #8ED9F4 100%
+  );
+
+  background-size: 500% 500%;
+  animation: blueShift 12s ease-in-out infinite;
+}
+
+@keyframes blueShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .hero-section {
