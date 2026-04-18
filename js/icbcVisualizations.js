@@ -25,8 +25,8 @@ async function initICBCChart() {
 
   const spec = {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-    width: isMobile ? 260 : 500,
-    height: isMobile ? 180 : 300,
+    width: { step: isMobile ? 22 : 38 },
+    height: { step: isMobile ? 22 : 38 },
     data: { values: cleaned },
 
     mark: {
@@ -36,14 +36,14 @@ async function initICBCChart() {
 
     encoding: {
       x: {
-        field: "MonthShort", // ✅ use shortened month
+        field: "MonthShort",
         type: "nominal",
         sort: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
         title: "Month",
         axis: {
           labelFont: "Urbanist",
           titleFont: "Urbanist",
-          labelAngle: -30, // ✅ prevents overlap
+          labelAngle: -30,
           labelFontSize: isMobile ? 8 : 11,
           titleFontSize: isMobile ? 10 : 12
         }
@@ -76,7 +76,7 @@ async function initICBCChart() {
       },
 
       tooltip: [
-        { field: "MonthShort", type: "nominal", title: "Month" }, // ✅ match display
+        { field: "MonthShort", type: "nominal", title: "Month" },
         { field: "Year", type: "nominal" },
         { field: "Unrounded Count", type: "quantitative", title: "Crashes" }
       ]
@@ -84,19 +84,18 @@ async function initICBCChart() {
 
     title: {
       text: "The ICBC Crash Heatmap",
-      fontSize: isMobile ? 12 : 14,
-      fontWeight: "normal",
-      color: "#444",
-      anchor: "start",
-      font: "Urbanist"
+      fontSize: isMobile ? 12 : 16,
+      fontWeight: "bold",
+      color: "#1a3a5c",
+      anchor: "middle",
+      font: "Urbanist",
+      offset: 12
     },
 
     config: {
       view: { stroke: null },
       background: "transparent",
-      axis: {
-        grid: false
-      },
+      axis: { grid: false },
       scale: {
         bandPaddingInner: 0.05,
         bandPaddingOuter: 0.02
@@ -111,59 +110,3 @@ async function initICBCChart() {
 }
 
 window.addEventListener("load", initICBCChart);
-
-// console.log("vis.js is connected");
-
-// async function fetchData() {
-//   const data = await d3.csv("./data/ICBC_Crashes.csv", d3.autoType);
-//   return data;
-// }
-
-// async function render(viewID, spec) {
-//   const result = await vegaEmbed(viewID, spec, {
-//     actions: false
-//   });
-//   result.view.run();
-// }
-
-// fetchData().then(async (data) => {
-//   const icbc = vl
-//     .markRect()
-//     .data(data)
-//     .encode(
-//       vl.y().fieldN("Year").title("Year"),
-//       vl.x()
-//         .fieldN("Month")
-//         .title("Month")  .sort(["January","February","March","April","May","June",
-//          "July","August","September","October","November","December"]),
-        
-
-//       vl.color()
-//         .fieldQ("Unrounded Count")
-//         .title("Crashes")
-//         .scale({
-//   range: ["#1f2f6b", "#f0c7c7", "#c81818"],
-//   domain: [0, 3500]
-// })
-// ,
-//       vl.tooltip([
-//         vl.fieldN("Month"),
-//         vl.fieldN("Year"),
-//         vl.fieldQ("Unrounded Count")
-//       ])
-//     )
-//     .title({
-//   text: "The ICBC Crash Heatmap",
-//   fontSize: 18,
-//   anchor: "middle"
-// })
-//     .toSpec();
-
-//   render(".icbc-vis", icbc);
-
-// });
-
-// async function render(viewID, spec) {
-//   const result = await vegaEmbed(viewID, spec);
-//   result.view.run();
-// }
