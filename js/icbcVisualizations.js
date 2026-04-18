@@ -6,7 +6,9 @@ async function fetchData() {
 }
 
 async function render(viewID, spec) {
-  const result = await vegaEmbed(viewID, spec);
+  const result = await vegaEmbed(viewID, spec, {
+    actions: false
+  });
   result.view.run();
 }
 
@@ -18,7 +20,9 @@ fetchData().then(async (data) => {
       vl.y().fieldN("Year").title("Year"),
       vl.x()
         .fieldN("Month")
-        .title("Month"),
+        .title("Month")  .sort(["January","February","March","April","May","June",
+         "July","August","September","October","November","December"]),
+        
 
       vl.color()
         .fieldQ("Unrounded Count")
