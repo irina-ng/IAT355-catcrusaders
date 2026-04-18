@@ -1227,6 +1227,7 @@ html, body {
   .futures-section {
     justify-content: flex-start;
     padding: 1.5em;
+    padding-top: 5em;
     overflow-y: auto;
   }
 
