@@ -23,7 +23,7 @@ async function initSleepChart() {
       if (hour < 12) hour += 24;
 
       let group;
-      if (hour < 21)       group = "Before 9 PM";
+      if (hour < 21)        group = "Before 9 PM";
       else if (hour < 21.5) group = "9:00";
       else if (hour < 22)   group = "9:30";
       else if (hour < 22.5) group = "10:00";
@@ -40,10 +40,12 @@ async function initSleepChart() {
       };
     });
 
+  const isMobile = window.innerWidth < 700;
+
   const spec = {
     $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-    width: 500,
-    height: 260,
+    width: isMobile ? 260 : 500,
+    height: isMobile ? 160 : 260,
     data: { values: records },
     mark: {
       type: "bar",
@@ -59,18 +61,22 @@ async function initSleepChart() {
         axis: {
           labelFont: "Urbanist",
           titleFont: "Urbanist",
-          labelAngle: 0
+          labelAngle: isMobile ? -35 : 0,
+          labelFontSize: isMobile ? 8 : 11,
+          titleFontSize: isMobile ? 10 : 12
         }
       },
       y: {
         field: "sleep_efficiency",
         type: "quantitative",
         aggregate: "mean",
-        title: "Average Sleep Efficiency (%)",
+        title: isMobile ? "Avg Sleep Efficiency (%)" : "Average Sleep Efficiency (%)",
         scale: { domain: [60, 90] },
         axis: {
           titleFont: "Urbanist",
           labelFont: "Urbanist",
+          labelFontSize: isMobile ? 9 : 11,
+          titleFontSize: isMobile ? 9 : 12,
           grid: true,
           gridColor: "#f0f0f0"
         }
@@ -97,15 +103,20 @@ async function initSleepChart() {
     },
     title: {
       text: "Sleep Efficiency by Bedtime",
-      fontSize: 13,
+      fontSize: isMobile ? 11 : 13,
       fontWeight: "normal",
       color: "#444",
       anchor: "start",
       font: "Urbanist"
     },
     config: {
-      view: { stroke: null },
-      background: "transparent"
+      config: {
+  view: { stroke: null },
+  background: "transparent",
+  scale: {
+    bandPaddingInner: isMobile ? 0.5 : 0.3
+  }
+}
     }
   };
 

@@ -97,6 +97,8 @@ function renderPreferenceChart(tabArgument) {
     count: counts[pref]
   }));
 
+  const isMobile = window.innerWidth < 700;
+
   const spec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
@@ -119,7 +121,7 @@ function renderPreferenceChart(tabArgument) {
         "axis": {
           "title": null,
           "labelFont": "Urbanist",
-          "labelFontSize": 13,
+          "labelFontSize": isMobile ? 10 : 13,
           "labelPadding": 8
         }
       },
@@ -130,7 +132,7 @@ function renderPreferenceChart(tabArgument) {
           "title": "Number of Comments",
           "titleFont": "Urbanist",
           "labelFont": "Urbanist",
-          "labelFontSize": 12
+          "labelFontSize": isMobile ? 10 : 12
         }
       },
       "color": {
@@ -140,8 +142,8 @@ function renderPreferenceChart(tabArgument) {
         "legend": null
       }
     },
-    "width": 340,
-    "height": 240,
+    "width": isMobile ? 220 : 340,
+    "height": isMobile ? 160 : 240,
     "config": {
       "view": { "stroke": "transparent" },
       "axis": {
