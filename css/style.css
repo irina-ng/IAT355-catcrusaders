@@ -623,16 +623,15 @@ html, body {
   box-sizing: border-box;
 }
 
-/* Sun times */
+/* Sun Times */
 .sun-times {
-  position: relative;
-  top: -2rem;
-
-  padding-bottom: 5em;
   color: #ffffff;
   font-size: 1.4rem;
   line-height: 1.4;
   font-weight: 800;
+  position: relative;
+  top: -2rem;
+  margin-top: 1em;
 }
 
 /* display date and year */
@@ -647,40 +646,7 @@ html, body {
   color: white;
   font-weight: 500;
 }
-@media (max-width: 700px) {
-  #sun-animation-container {
-    min-height: unset;
-    height: 100vh;
-  }
-  .sun-times {
-    position: static !important;
-    top: 0 !important;
-    padding-bottom: 0.5em !important;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-top: 0.5rem;
-  }
-  .slider-bottom {
-    padding: 1.5rem 1rem;
-    margin-top: 15rem!important;
-    border-radius: 0;
-  }
-  .light-controls {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    align-items: center;
-  }
-  .city-select,
-  .month-select {
-    flex: 1;
-    min-width: 0;
-    padding: 8px 10px;
-  }
-  .dst-toggle-group {
-    width: 100%;
-  }
-}
+
 /* Top row */
 .light-top-row {
   display: flex;
@@ -838,14 +804,39 @@ html, body {
 }
 
 /* Responsive */
+@media (max-width: 1400px) {
+  .overlay-content { padding: 100px 60px 50px; }
+  .sun-times {
+    font-size: 1.25rem;
+    margin-top: 2em;
+  }
+}
+
 @media (max-width: 1200px) {
   .overlay-content { padding: 100px 60px 50px; }
+  .sun-times {
+    font-size: 1.25rem;
+    top: -2rem;
+    margin-top: 2em;
+  }
 }
+  
 @media (max-width: 900px) {
   .overlay-content { padding: 80px 40px 50px; }
+  .sun-times {
+    font-size: 1.25rem;
+    top: -2rem;
+    margin-top: 2em;
+  }
 }
+
 @media (max-width: 600px) {
   .overlay-content { padding: 90px 20px 40px; }
+  .sun-times {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    margin-top: 2em;
+  }
 }
 /* #endregion */
 
