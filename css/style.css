@@ -873,7 +873,7 @@ html, body {
     font-size: 1.25rem;
     margin-top: 2em;
   }
-
+}
 
 @media (max-width: 1200px) {
   .overlay-content { padding: 100px 60px 50px; }
@@ -1241,4 +1241,3 @@ html, body {
 }
 
 /* #endregion */
-}
