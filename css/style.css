@@ -729,6 +729,8 @@ html, body {
 
 .light-title p {
   color: #e0e0e0;
+  font-size: 0.9em;
+  line-height: 1.3em;
 }
 
 .city-select,
