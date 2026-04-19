@@ -66,8 +66,8 @@ async function initICBCChart() {
         type: "quantitative",
         title: "Crashes",
         scale: {
-          domain: [0, 3500],
-          range: ["#1f2f6b", "#f0c7c7", "#c81818"]
+          domain: [1500, 3900],
+          range: ["#e4a791", "#1f2f6b"]
         },
         legend: {
           titleFont: "Urbanist",
