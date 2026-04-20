@@ -81,24 +81,40 @@ async function initSleepChart() {
           gridColor: "#f0f0f0"
         }
       },
+
       color: {
-        field: "group",
-        type: "nominal",
-        sort: ORDER,
+        field: "sleep_efficiency",
+        type: "quantitative",
+        aggregate: "mean",
+        title: "Avg Efficiency (%)",
         scale: {
-          domain: ORDER,
-          range: [
-            "#1a3a5c", "#1f4a74", "#2a5a8c", "#3a6ea0",
-            "#4a7aac", "#5a8ab8", "#7aaad0", "#8abcdc",
-            "#aad0f0", "#c0e0f8"
-          ]
+          scheme: "blues",          
+          domain: [74, 88],   
+          range: ["#d1e5f0", "#08519c"]
+
         },
-        legend: null
+        legend: {
+          title: "Avg Sleep Efficiency",
+          orient: "right",
+          titleFont: "Urbanist",
+          labelFont: "Urbanist"
+        }
       },
       tooltip: [
         { field: "group", type: "nominal", title: "Bedtime" },
-        { field: "sleep_efficiency", aggregate: "mean", type: "quantitative", title: "Avg Efficiency (%)", format: ".1f" },
-        { field: "sleep_efficiency", aggregate: "count", type: "quantitative", title: "Sample size" }
+        { 
+          field: "sleep_efficiency", 
+          aggregate: "mean", 
+          type: "quantitative", 
+          title: "Avg Efficiency (%)", 
+          format: ".1f" 
+        },
+        { 
+          field: "sleep_efficiency", 
+          aggregate: "count", 
+          type: "quantitative", 
+          title: "Sample size" 
+        }
       ]
     },
     title: {
@@ -110,13 +126,11 @@ async function initSleepChart() {
       font: "Urbanist"
     },
     config: {
-      config: {
-  view: { stroke: null },
-  background: "transparent",
-  scale: {
-    bandPaddingInner: isMobile ? 0.5 : 0.3
-  }
-}
+      view: { stroke: null },
+      background: "transparent",
+      scale: {
+        bandPaddingInner: isMobile ? 0.5 : 0.3
+      }
     }
   };
 
