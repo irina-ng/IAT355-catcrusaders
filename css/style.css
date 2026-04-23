@@ -848,6 +848,16 @@ html, body {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
+.slider-bottom-description{
+  margin-top:2rem;
+    font-size: 0.75rem;
+   color: white;
+  font-weight: 300; 
+}
+.slider-bottom-description-container{
+    margin-top:1rem;
+}
+
 #time-slider {
   display: block;
   width: 100%;
